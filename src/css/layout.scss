@@ -1,0 +1,10 @@
+@import 'theme';
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+
+  a {
+    color: $primary-color;
+  }
+}

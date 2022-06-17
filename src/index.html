@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/theme.scss" />
+    <link rel="stylesheet" href="./css/semantic-commit.scss" />
+    <link rel="stylesheet" href="./css/resume.scss" />
+    <link rel="stylesheet" href="./css/layout.scss" />
+
+    <title>Jira Extension</title>
+  </head>
+  <body>
+    <section class="semantic-commit-section">
+      <h3>Semantic Commit</h3>
+      <select id="semantic_commit">
+        <option value="">None</option>
+        <option value="feat">✨ Feat</option>
+        <option value="chore">🍻 Chore</option>
+        <option value="fix">🐛 Fix</option>
+        <option value="refactor">♻️ Refactor</option>
+        <option value="style">💄 Style</option>
+        <option value="docs">📝 Docs</option>
+      </select>
+    </section>
+    <section class="resume-section">
+      <h3>Resume</h3>
+      <ul>
+        <li>
+          <label>
+            Branch name
+            <input id="branch_name" />
+          </label>
+          <button id="copy_branch_name">Copy</button>
+        </li>
+        <li>
+          <label>
+            New Branch
+            <input id="branch_name_checkout" readonly />
+          </label>
+          <button id="copy_branch_name_checkout">Copy</button>
+        </li>
+      </ul>
+    </section>
+    <footer>
+      <a href="https://www.github.com/jeconias/jira-extension" target="_blank"
+        >Github</a
+      >
+    </footer>
+  </body>
+  <script src="./js/actions.js"></script>
+</html>

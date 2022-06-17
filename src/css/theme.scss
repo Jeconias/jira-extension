@@ -1,0 +1,88 @@
+@use 'sass:map';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap');
+
+$primary-color: #ffb142;
+$background: #57606f;
+
+// Spacing Size
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+
+/*
+  Font Size
+*/
+@mixin font-size-xs {
+  font-size: 0.8rem;
+}
+
+@mixin font-size-sm {
+  font-size: 1rem;
+}
+
+@mixin font-size-md {
+  font-size: 1.1rem;
+}
+
+@mixin font-size-lg {
+  font-size: 1.2rem;
+}
+
+/*
+  Styled Tags
+*/
+
+@mixin h3 {
+  margin: 0;
+  margin-bottom: $spacing-sm;
+  @include font-size-md();
+}
+
+@mixin sectionBase {
+  margin: 0;
+  margin-bottom: $spacing-md;
+}
+
+/*
+  Transitions
+*/
+
+$transitions: (
+  'fast': 0.3s,
+  'normal': 0.5s,
+  'slow': 0.8s,
+);
+
+@mixin transition($property, $speed: 'normal') {
+  transition: #{$property} map.get($transitions, $speed);
+}
+
+/*
+  Global
+*/
+html {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  border-radius: 5px;
+  padding: 4px 4px;
+  background-color: $background;
+}
+
+p,
+label,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #fff;
+}
+
+* {
+  font-family: 'Open Sans', sans-serif;
+}

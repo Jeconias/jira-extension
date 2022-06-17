@@ -1,0 +1,49 @@
+@import 'theme';
+
+.resume-section {
+  @include sectionBase;
+
+  h3 {
+    @include h3;
+    color: $primary-color;
+  }
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      display: flex;
+      margin-bottom: $spacing-md;
+
+      label {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+
+        @include font-size-xs();
+      }
+
+      input {
+        margin-top: $spacing-xs;
+      }
+
+      button {
+        height: 25px;
+        margin: auto 0 0 $spacing-md;
+        border: 0;
+        border-radius: 4px;
+        background-color: #fff;
+
+        @include transition('color, background-color');
+
+        &:hover {
+          background-color: $primary-color;
+          color: #fff;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Jira Extension",
+  "version": "1.0.0",
+  "description": "A extension to help you when using the Jira platform.",
+  "manifest_version": 3,
+  "author": "Jeconias Santos <https://github.com/jeconias>",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": ["https://www.google.com/"],
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Jira Extension"
+  }
+}

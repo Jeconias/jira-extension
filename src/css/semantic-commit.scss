@@ -1,0 +1,17 @@
+@import 'theme';
+
+.semantic-commit-section {
+  display: flex;
+  flex-direction: column;
+
+  @include sectionBase;
+
+  h3 {
+    @include h3;
+    color: $primary-color;
+  }
+
+  select {
+    flex: 1;
+  }
+}
