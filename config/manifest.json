@@ -1,0 +1,21 @@
+{
+  "name": "Jira Extension",
+  "version": "1.0.1",
+  "description": "This extension will help you as a Developer while using the Jira Platform.",
+  "manifest_version": 3,
+  "author": "Jeconias Santos <https://github.com/jeconias>",
+  "permissions": ["tabs", "activeTab", "browserAction"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "index.html",
+    "default_title": "Jira Extension",
+    "default_icon": {
+      "16": "./icons/j16.png",
+      "32": "./icons/j32.png",
+      "48": "./icons/j48.png",
+      "128": "./icons/j128.png"
+    }
+  }
+}

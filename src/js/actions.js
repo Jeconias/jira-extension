@@ -39,9 +39,15 @@ function generateBranchName(qs) {
 function applyPrefix(ctx, value, prefix) {
   switch (ctx) {
     case 'name':
-      return `${!!prefix ? `${prefix}/` : ''}${value}`;
+      const name = `${!!prefix ? `${prefix}/` : ''}${value}`;
+
+      return name;
     case 'checkout':
-      return `git checkout -b ${!!prefix ? `${prefix}/` : ''}${value}`;
+      const checkout = `git checkout -b ${
+        !!prefix ? `${prefix}/` : ''
+      }${value}`;
+
+      return checkout;
     default:
       return value;
   }

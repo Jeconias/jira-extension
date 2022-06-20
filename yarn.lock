@@ -1289,6 +1289,11 @@ ordered-binary@^1.2.4:
   resolved "https://registry.yarnpkg.com/ordered-binary/-/ordered-binary-1.2.5.tgz#6208c45067eae9d14b8f44791a1d7037adad9147"
   integrity sha512-djRmZoEpOGvIRW7ufsCDHtvcUa18UC9TxnPbHhSVFZHsoyg0dtut1bWtBZ/fmxdPN62oWXrV6adM7NoWU+CneA==
 
+parcel-resolver-ignore@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/parcel-resolver-ignore/-/parcel-resolver-ignore-2.1.1.tgz#b17f7dfdb2aed0f62515a4a7c983addd93489f89"
+  integrity sha512-76Mkak4YCOfb+f4qBh5ewmeHzielAVE45nsSYPkvJm/NcZBxQ2gOW+ScLYdfkGTtyG6PzQO443wRRXiEDP+64g==
+
 parcel@^2.6.0:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/parcel/-/parcel-2.6.0.tgz#801bd3af8339966fc52370033e1b7f3c9b9e457d"
