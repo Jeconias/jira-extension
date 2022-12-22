@@ -1,3 +1,47 @@
+const COMMIT_TYPES = ['feat', 'chore', 'fix', 'refactor', 'style', 'docs'];
+const PREFERENCE_PREFIX = 'preference_prefix';
+
+async function handlePreferencePrefixIncrement(prefix) {
+  if (!COMMIT_TYPES.includes(prefix)) return;
+
+  const data = await chrome.storage.sync.get([PREFERENCE_PREFIX]);
+
+  if (data[PREFERENCE_PREFIX]) {
+    const currentCount = data[PREFERENCE_PREFIX][prefix];
+    await chrome.storage.sync.set({
+      [PREFERENCE_PREFIX]: {
+        ...data[PREFERENCE_PREFIX],
+        [prefix]: currentCount + 1,
+      },
+    });
+
+    return;
+  }
+
+  await chrome.storage.sync.set({
+    [PREFERENCE_PREFIX]: COMMIT_TYPES.reduce(
+      (acc, curr) => ({ ...acc, [curr]: 0 }),
+      {}
+    ),
+  });
+}
+
+async function getPreferencePrefix() {
+  const data = await chrome.storage.sync.get([PREFERENCE_PREFIX]);
+
+  return Object.keys(data[PREFERENCE_PREFIX] ?? {}).reduce(
+    (acc, curr) => {
+      const currentCount = data[PREFERENCE_PREFIX]?.[curr] ?? 0;
+      if (currentCount > acc.count) {
+        return { commitType: curr, count: currentCount };
+      }
+
+      return acc;
+    },
+    { commitType: '', count: 0 }
+  );
+}
+
 async function getCurrentTab() {
   const queryOptions = { active: true, lastFocusedWindow: true };
 
@@ -7,10 +51,10 @@ async function getCurrentTab() {
 }
 
 function getQueryString(url) {
-  const urlArr = url.split('?');
+  const urlArr = url?.split('?');
   if (Array.isArray(urlArr) && urlArr.length < 1) return {};
 
-  const qs = urlArr[1];
+  const qs = urlArr[1] ?? '';
   const result = {};
 
   qs.split('&').forEach((kv) => {
@@ -28,8 +72,7 @@ function copyToClipboard(text) {
 }
 
 function generateBranchName(qs) {
-  const issueName =
-    qs.modal === 'detail' && qs.selectedIssue ? qs.selectedIssue : undefined;
+  const issueName = qs?.selectedIssue ? qs.selectedIssue : undefined;
 
   if (!issueName) return '';
 
@@ -61,6 +104,7 @@ function handleCopy(item, semanticCommitRef) {
 
 function reloadInputValue(item) {
   return function () {
+    handlePreferencePrefixIncrement(this.value);
     item.input.value = applyPrefix(item.ctx, item.value, this.value);
   };
 }
@@ -81,6 +125,10 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   const branchName = generateBranchName(result);
 
+  const mostUsedPrefix = await getPreferencePrefix();
+  const commitType = mostUsedPrefix.commitType;
+  semanticCommit.value = commitType ?? '';
+
   [
     {
       ctx: 'name',
@@ -98,6 +146,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     item.button.addEventListener('click', handleCopy(item, semanticCommit));
     semanticCommit.addEventListener('change', reloadInputValue(item));
 
-    item.input.value = applyPrefix(item.ctx, item.value);
+    item.input.value = applyPrefix(item.ctx, item.value, commitType);
   });
 });

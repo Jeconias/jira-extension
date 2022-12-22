@@ -1,17 +1,18 @@
 {
   "name": "jira-extension",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A extension to help you when using the Jira platform.",
   "repository": "https://github.com/jeconias/jira-extension",
   "author": "Jeconias Santos <https://github.com/jeconias>",
   "license": "MIT",
   "source": "src/index.html",
   "scripts": {
-    "start": "parcel --port 1717 --open",
-    "build": "parcel build src/index.html --public-url ./ && cp manifest.json ./dist"
+    "start": "parcel watch manifest.json --host localhost --config @parcel/config-webextension",
+    "build": "parcel build manifest.json --config @parcel/config-webextension --public-url ./"
   },
   "devDependencies": {
-    "@parcel/transformer-sass": "2.6.0",
-    "parcel": "^2.6.0"
+    "@parcel/config-webextension": "^2.8.2",
+    "@parcel/transformer-sass": "^2.8.2",
+    "parcel": "^2.8.2"
   }
 }
