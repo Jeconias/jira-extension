@@ -52,7 +52,7 @@ async function getCurrentTab() {
 
 function getQueryString(url) {
   const urlArr = url?.split('?');
-  if (Array.isArray(urlArr) && urlArr.length < 1) return {};
+  if (!Array.isArray(urlArr) || urlArr.length < 1) return {};
 
   const qs = urlArr[1] ?? '';
   const result = {};
@@ -66,13 +66,23 @@ function getQueryString(url) {
   return result;
 }
 
+function getStoryNameFromPath(url) {
+  const result = url?.matchAll(/browse\/([a-zA-Z]+)-([0-9]{1,6})/g);
+  if(!result) return '';
+
+  const asArray = [].concat(...result);
+  if(asArray.length < 3) return '';
+
+  return `${asArray[1]}-${asArray[2]}`;
+}
+
 function copyToClipboard(text) {
   if (typeof text !== 'string') return Promise.reject('Text not is a string');
   return navigator.clipboard.writeText(text);
 }
 
-function generateBranchName(qs) {
-  const issueName = qs?.selectedIssue ? qs.selectedIssue : undefined;
+function generateBranchName(qs, fromPath) {
+  const issueName = qs?.selectedIssue ? qs.selectedIssue : fromPath;
 
   if (!issueName) return '';
 
@@ -121,9 +131,10 @@ document.addEventListener('DOMContentLoaded', async function () {
   );
 
   const tab = await getCurrentTab();
-  const result = getQueryString(tab.url);
+  const qsResult = getQueryString(tab.url);
+  const pathResult = getStoryNameFromPath(tab.url);
 
-  const branchName = generateBranchName(result);
+  const branchName = generateBranchName(qsResult, pathResult);
 
   const mostUsedPrefix = await getPreferencePrefix();
   const commitType = mostUsedPrefix.commitType;
