@@ -39,5 +39,5 @@ jobs:
 
     - name: Create the release
       run: |
-        zip -r "$TAG.zip" dist/
-        gh release create $TAG "./$TAG.zip" --title "$TAG" --notes "$(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s by %an in #%h")"
+        zip -r "dist-$TAG.zip" dist/
+        gh release create $TAG "./dist-$TAG.zip" --title "$TAG" --notes "$(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s by %an in #%h")"
