@@ -1,0 +1,40 @@
+name: New Release
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create_release_tag:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Get package.json version
+      id: package_version
+      run: |
+        VERSION=$(jq -r '.version' package.json)
+        TAG="v$VERSION"
+
+        echo "package.json version: $VERSION"
+        echo "TAG=$TAG" >> $GITHUB_ENV
+
+    - name: Check if tag exists
+      run: |
+        TAG_EXISTS=$(git tag -l "$TAG")
+        if [ -n "$TAG_EXISTS" ]; then
+          echo "The $TAG found. Aborting the operation."
+          exit 1
+        else
+          echo "The tag $TAG not found. Next..."
+        fi
+
+    - name: Build
+      run: |
+        yarn install
+        yarn build
+
+    - name: Create the release
+      run: |
+        zip -r "$TAG.zip" dist/
+        gh release create $TAG "./$TAG.zip" --title "$TAG" --notes "$(git log $TAG..HEAD --pretty=format:"%s by %an in #%h")"
