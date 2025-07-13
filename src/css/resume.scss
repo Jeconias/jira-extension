@@ -1,6 +1,7 @@
 @import 'theme';
 
 .resume-section {
+  @include card;
   @include sectionBase;
 
   h3 {
@@ -16,33 +17,62 @@
     li {
       display: flex;
       margin-bottom: $spacing-md;
+      align-items: flex-end;
 
       label {
         display: flex;
         flex-direction: column;
         flex: 1;
-
         @include font-size-xs();
+        color: #fff;
       }
 
-      input {
+      input#branch_name,
+      input#branch_name_checkout {
         margin-top: $spacing-xs;
+        @include input;
+        width: auto;
+        min-width: 80px;
+        max-width: 100%;
+        max-width: 600px;
+        transition: width 0.2s;
+        font-family: inherit;
+        font-size: inherit;
+        width: fit-content;
+        max-width: calc(0.65em * 100);
       }
 
       button {
-        height: 25px;
         margin: auto 0 0 $spacing-md;
-        border: 0;
-        border-radius: 4px;
-        background-color: #fff;
+        height: 32px;
+        min-width: 100px;
+        @include button;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+      }
+    }
+  }
 
-        @include transition('color, background-color');
+  .resume-github-link {
+    margin-top: $spacing-lg;
+    display: flex;
+    justify-content: flex-start;
 
-        &:hover {
-          background-color: $primary-color;
-          color: #fff;
-          cursor: pointer;
-        }
+    a {
+      color: $primary-color;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      font-size: 1rem;
+      padding: $spacing-xs $spacing-md;
+      border-radius: $button-radius;
+      transition: background 0.3s, color 0.3s;
+      &:hover {
+        background: $primary-color;
+        color: #222;
+        text-decoration: underline;
       }
     }
   }
