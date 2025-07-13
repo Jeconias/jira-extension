@@ -34,7 +34,10 @@ jobs:
         yarn install
         yarn build
 
+    - name: Authenticate with GitHub CLI
+      run: gh auth login --with-token <<< "${{ secrets.GH_TOKEN }}"
+
     - name: Create the release
       run: |
         zip -r "$TAG.zip" dist/
-        gh release create $TAG "./$TAG.zip" --title "$TAG" --notes "$(git log $TAG..HEAD --pretty=format:"%s by %an in #%h")"
+        gh release create $TAG "./$TAG.zip" --title "$TAG" --notes "$(git log $(git describe --tags --abbrev=0)..HEAD --pretty=format:"%s by %an in #%h")"
