@@ -30,6 +30,10 @@ Extensão para Google Chrome que facilita a geração automática de nomes de br
 
 Se estiver na issue `PROJ-456` com o título "Corrigir erro de login", a extensão irá gerar automaticamente:
 
+### 📄 Política de Privacidade
+
+[Detalhes sobre a Política de Privacidade](./privacy-policy.md)
+
 ---
 
 ## 🇺🇸 Description
@@ -53,6 +57,10 @@ Se estiver na issue `PROJ-456` com o título "Corrigir erro de login", a extens�
 ### 📂 Example branch name
 
 If you're on issue `PROJ-456` titled "Fix login bug", the extension will generate:
+
+### 📄 Privacy Policy
+
+[Details about Privacy Policy](./privacy-policy.md)
 
 ---
 

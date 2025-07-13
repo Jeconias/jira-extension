@@ -1,6 +1,6 @@
 {
   "name": "jira-extension",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A extension to help you when using the Jira platform.",
   "repository": "https://github.com/jeconias/jira-extension",
   "author": "Jeconias Santos <https://github.com/jeconias>",
