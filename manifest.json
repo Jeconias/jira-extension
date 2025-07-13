@@ -4,7 +4,7 @@
   "description": "A extension to help you when using the Jira platform.",
   "manifest_version": 3,
   "author": "Jeconias Santos <https://github.com/jeconias>",
-  "permissions": ["storage", "activeTab", "scripting"],
+  "permissions": ["storage", "activeTab"],
   "host_permissions": [],
   "action": {
     "default_popup": "src/index.html",
