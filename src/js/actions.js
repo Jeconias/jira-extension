@@ -100,10 +100,11 @@ function applyPrefix(ctx, value, prefix) {
   }
 }
 
-function handleCopy(item, semanticCommitRef) {
+function handleCopy(item, semanticCommitRef, allButtons) {
   return () => {
     copyToClipboard(applyPrefix(item.ctx, item.value, semanticCommitRef.value))
       .then(() => {
+        allButtons.forEach(btn => btn.innerHTML = 'Copy');
         item.button.innerHTML = 'Copied!';
       })
       .catch(() => {
@@ -140,6 +141,8 @@ document.addEventListener('DOMContentLoaded', async function () {
   const commitType = mostUsedPrefix.commitType;
   semanticCommit.value = commitType ?? '';
 
+  const allButtons = [buttonBranchRef, buttonBrancCheckouthRef];
+
   [
     {
       ctx: 'name',
@@ -154,7 +157,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       value: branchName,
     },
   ].forEach((item) => {
-    item.button.addEventListener('click', handleCopy(item, semanticCommit));
+    item.button.addEventListener('click', handleCopy(item, semanticCommit, allButtons));
     semanticCommit.addEventListener('change', reloadInputValue(item));
 
     item.input.value = applyPrefix(item.ctx, item.value, commitType);

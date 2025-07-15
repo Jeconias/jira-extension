@@ -1,9 +1,9 @@
 @import 'theme';
 
 .semantic-commit-section {
+  @include card;
   display: flex;
   flex-direction: column;
-
   @include sectionBase;
 
   h3 {
@@ -13,5 +13,9 @@
 
   select {
     flex: 1;
+    margin-top: $spacing-sm;
+    @include input;
+    min-width: 120px;
+    max-width: 220px;
   }
 }

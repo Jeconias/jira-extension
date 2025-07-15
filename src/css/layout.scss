@@ -1,10 +1,28 @@
 @import 'theme';
 
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: $spacing-lg;
+  background-color: $background;
+}
+
 footer {
   display: flex;
   justify-content: flex-end;
+  width: 100%;
+  margin-top: auto;
+  padding-top: $spacing-lg;
 
   a {
     color: $primary-color;
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }

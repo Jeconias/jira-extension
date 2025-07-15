@@ -87,3 +87,52 @@ h6 {
 * {
   font-family: 'Open Sans', sans-serif;
 }
+
+$card-bg: #2d3436;
+$card-radius: 12px;
+$card-shadow: 0 2px 12px 0 rgba(0,0,0,0.18);
+$input-bg: #222;
+$input-border: #444;
+$input-radius: 6px;
+$button-radius: 6px;
+$button-shadow: 0 1px 4px 0 rgba(0,0,0,0.12);
+
+@mixin card {
+  background: $card-bg;
+  border-radius: $card-radius;
+  box-shadow: $card-shadow;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+}
+
+@mixin input {
+  background: $input-bg;
+  border: 1px solid $input-border;
+  border-radius: $input-radius;
+  color: #fff;
+  padding: $spacing-sm $spacing-md;
+  @include font-size-sm();
+  outline: none;
+  @include transition('border-color, box-shadow');
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: 0 0 0 2px rgba(255,177,66,0.2);
+  }
+}
+
+@mixin button {
+  background: $primary-color;
+  color: #222;
+  border: none;
+  border-radius: $button-radius;
+  padding: $spacing-sm $spacing-lg;
+  font-weight: 600;
+  box-shadow: $button-shadow;
+  cursor: pointer;
+  @include transition('background, color, box-shadow');
+  &:hover {
+    background: darken($primary-color, 10%);
+    color: #fff;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.18);
+  }
+}
