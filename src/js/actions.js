@@ -121,7 +121,7 @@ function reloadInputValue(item) {
 }
 
 document.addEventListener('DOMContentLoaded', async function () {
-  const semanticCommit = document.getElementById('semantic_commit');
+  const semanticCommit = document.getElementById('semantic_branch');
   const inputBranchRef = document.getElementById('branch_name');
   const buttonBranchRef = document.getElementById('copy_branch_name');
   const inputBranchCheckoutRef = document.getElementById(

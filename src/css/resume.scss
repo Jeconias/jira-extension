@@ -4,6 +4,8 @@
   @include card;
   @include sectionBase;
 
+  margin-bottom: 0;
+
   h3 {
     @include h3;
     color: $primary-color;
@@ -61,17 +63,18 @@
     justify-content: flex-start;
 
     a {
-      color: $primary-color;
+      color: rgba(255, 255, 255, 0.5);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: 0.5px;
       font-size: 1rem;
       padding: $spacing-xs $spacing-md;
       border-radius: $button-radius;
       transition: background 0.3s, color 0.3s;
+      border: 1px solid $primary-color;
       &:hover {
-        background: $primary-color;
         color: #222;
+        background: $primary-color;
         text-decoration: underline;
       }
     }

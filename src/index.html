@@ -5,16 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/theme.scss" />
-    <link rel="stylesheet" href="./css/semantic-commit.scss" />
+    <link rel="stylesheet" href="./css/semantic-branch.scss" />
     <link rel="stylesheet" href="./css/resume.scss" />
     <link rel="stylesheet" href="./css/layout.scss" />
 
     <title>Jira Extension</title>
   </head>
   <body>
-    <section class="semantic-commit-section">
-      <h3>Semantic Commit</h3>
-      <select id="semantic_commit">
+    <section class="semantic-branch-section">
+      <h3>Semantic Branch Name</h3>
+      <select id="semantic_branch">
         <option value="">None</option>
         <option value="feat">✨ Feat</option>
         <option value="chore">🍻 Chore</option>
@@ -29,14 +29,14 @@
       <ul>
         <li>
           <label>
-            Branch name
+            Name
             <input id="branch_name" />
           </label>
           <button id="copy_branch_name">Copy</button>
         </li>
         <li>
           <label>
-            New Branch
+            Checkout
             <input id="branch_name_checkout" readonly />
           </label>
           <button id="copy_branch_name_checkout">Copy</button>

@@ -1,10 +1,11 @@
 @import 'theme';
 
-.semantic-commit-section {
+.semantic-branch-section {
   @include card;
+  @include sectionBase;
+
   display: flex;
   flex-direction: column;
-  @include sectionBase;
 
   h3 {
     @include h3;
