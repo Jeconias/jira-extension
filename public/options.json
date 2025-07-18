@@ -28,5 +28,10 @@
       "key":"docs",
       "emoji":"📝",
       "label":"Docs"
+   },
+   {
+      "key":"Remove",
+      "emoji":"🔥",
+      "label":"Remove code or files"
    }
 ]
