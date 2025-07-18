@@ -1,8 +1,8 @@
-const COMMIT_TYPES = ['feat', 'chore', 'fix', 'refactor', 'style', 'docs'];
-const PREFERENCE_PREFIX = 'preference_prefix';
+const GLOBAL_PREFIX = [];
+const PREFERENCE_PREFIX = 'PREFERENCE_PREFIX';
 
 async function handlePreferencePrefixIncrement(prefix) {
-  if (!COMMIT_TYPES.includes(prefix)) return;
+  if (!GLOBAL_PREFIX.includes(prefix)) return;
 
   const data = await chrome.storage.sync.get([PREFERENCE_PREFIX]);
 
@@ -19,10 +19,7 @@ async function handlePreferencePrefixIncrement(prefix) {
   }
 
   await chrome.storage.sync.set({
-    [PREFERENCE_PREFIX]: COMMIT_TYPES.reduce(
-      (acc, curr) => ({ ...acc, [curr]: 0 }),
-      {}
-    ),
+    [PREFERENCE_PREFIX]: GLOBAL_PREFIX.reduce((acc, curr) => ({ ...acc, [curr]: 0 }), {}),
   });
 }
 
@@ -68,10 +65,10 @@ function getQueryString(url) {
 
 function getStoryNameFromPath(url) {
   const result = url?.matchAll(/browse\/([a-zA-Z]+)-([0-9]{1,6})/g);
-  if(!result) return '';
+  if (!result) return '';
 
   const asArray = [].concat(...result);
-  if(asArray.length < 3) return '';
+  if (asArray.length < 3) return '';
 
   return `${asArray[1]}-${asArray[2]}`;
 }
@@ -104,7 +101,7 @@ function handleCopy(item, semanticCommitRef, allButtons) {
   return () => {
     copyToClipboard(applyPrefix(item.ctx, item.value, semanticCommitRef.value))
       .then(() => {
-        allButtons.forEach(btn => btn.innerHTML = 'Copy');
+        allButtons.forEach((btn) => (btn.innerHTML = 'Copy'));
         item.button.innerHTML = 'Copied!';
       })
       .catch(() => {
@@ -120,16 +117,38 @@ function reloadInputValue(item) {
   };
 }
 
+async function fetchPrefixOptionsAsPromise(semanticCommitRef) {
+  return new Promise((resolve, reject) => {
+    chrome.runtime.sendMessage({ action: 'fetch-prefix-options' }, (response) => {
+      if (chrome.runtime.lastError) {
+        reject(chrome.runtime.lastError);
+      } else {
+        if (Array.isArray(response) && response.length > 0) {
+          const options = response.map(
+            (item) => `<option value="${item.key}">${item.emoji} ${item.label}</option>`
+          );
+
+          semanticCommitRef.innerHTML = `<option value="">None</option>${options.join('')}`;
+          GLOBAL_PREFIX.push(...response.map((item) => item.key));
+        } else {
+          semanticCommitRef.innerHTML = '<option value="" selected>Sem opções disponíveis</option>';
+          semanticCommitRef.value = '';
+        }
+
+        resolve();
+      }
+    });
+  });
+}
+
 document.addEventListener('DOMContentLoaded', async function () {
   const semanticCommit = document.getElementById('semantic_branch');
   const inputBranchRef = document.getElementById('branch_name');
   const buttonBranchRef = document.getElementById('copy_branch_name');
-  const inputBranchCheckoutRef = document.getElementById(
-    'branch_name_checkout'
-  );
-  const buttonBrancCheckouthRef = document.getElementById(
-    'copy_branch_name_checkout'
-  );
+  const inputBranchCheckoutRef = document.getElementById('branch_name_checkout');
+  const buttonBrancCheckouthRef = document.getElementById('copy_branch_name_checkout');
+
+  await fetchPrefixOptionsAsPromise(semanticCommit);
 
   const tab = await getCurrentTab();
   const qsResult = getQueryString(tab.url);
