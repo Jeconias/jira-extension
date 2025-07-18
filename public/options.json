@@ -1,0 +1,32 @@
+[
+   {
+      "key":"feat",
+      "emoji":"✨",
+      "label":"Feat"
+   },
+   {
+      "key":"chore",
+      "emoji":"🍻",
+      "label":"Chore"
+   },
+   {
+      "key":"fix",
+      "emoji":"🐛",
+      "label":"Fix"
+   },
+   {
+      "key":"refactor",
+      "emoji":"♻️",
+      "label":"Refactor"
+   },
+   {
+      "key":"style",
+      "emoji":"💄",
+      "label":"Style"
+   },
+   {
+      "key":"docs",
+      "emoji":"📝",
+      "label":"Docs"
+   }
+]
