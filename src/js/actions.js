@@ -141,14 +141,26 @@ async function fetchPrefixOptionsAsPromise(semanticCommitRef) {
   });
 }
 
+function showBranchWarning(show) {
+  const branchWarning = document.getElementById('branch-warning');
+  const branchWarningDivider = document.getElementById('branch-warning-divider');
+
+  if (branchWarning) branchWarning.style.display = show ? 'block' : 'none';
+  if (branchWarningDivider) branchWarningDivider.style.display = show ? 'block' : 'none';
+}
+
+function resetCopyButtons(allButtons) {
+  allButtons.forEach((btn) => (btn.innerHTML = 'Copy'));
+}
+
 document.addEventListener('DOMContentLoaded', async function () {
-  const semanticCommit = document.getElementById('semantic_branch');
+  const semanticBranch = document.getElementById('semantic_branch');
   const inputBranchRef = document.getElementById('branch_name');
   const buttonBranchRef = document.getElementById('copy_branch_name');
   const inputBranchCheckoutRef = document.getElementById('branch_name_checkout');
   const buttonBrancCheckouthRef = document.getElementById('copy_branch_name_checkout');
 
-  await fetchPrefixOptionsAsPromise(semanticCommit);
+  await fetchPrefixOptionsAsPromise(semanticBranch);
 
   const tab = await getCurrentTab();
   const qsResult = getQueryString(tab.url);
@@ -158,7 +170,16 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   const mostUsedPrefix = await getPreferencePrefix();
   const commitType = mostUsedPrefix.commitType;
-  semanticCommit.value = commitType ?? '';
+  semanticBranch.value = commitType ?? '';
+
+  const allRefs = [
+    semanticBranch,
+    buttonBranchRef,
+    buttonBrancCheckouthRef,
+    inputBranchRef,
+    inputBranchCheckoutRef,
+  ];
+  allRefs.forEach((item) => (!branchName ? (item.disabled = true) : (item.disabled = false)));
 
   const allButtons = [buttonBranchRef, buttonBrancCheckouthRef];
 
@@ -176,9 +197,25 @@ document.addEventListener('DOMContentLoaded', async function () {
       value: branchName,
     },
   ].forEach((item) => {
-    item.button.addEventListener('click', handleCopy(item, semanticCommit, allButtons));
-    semanticCommit.addEventListener('change', reloadInputValue(item));
+    if (!item.value) {
+      item.button.disabled = true;
+      showBranchWarning(true);
+      return;
+    }
+
+    item.button.addEventListener('click', handleCopy(item, semanticBranch, allButtons));
+    semanticBranch.addEventListener('change', function (e) {
+      resetCopyButtons(allButtons);
+      reloadInputValue(item).call(semanticBranch, e);
+    });
 
     item.input.value = applyPrefix(item.ctx, item.value, commitType);
   });
+
+  const versionSpan = document.getElementById('extension-version');
+
+  if (versionSpan && chrome?.runtime?.getManifest) {
+    const manifest = chrome.runtime.getManifest();
+    versionSpan.textContent = manifest.version ? `v${manifest.version}` : '';
+  }
 });
