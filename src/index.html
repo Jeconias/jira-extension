@@ -17,12 +17,22 @@
       <select id="semantic_branch"></select>
     </section>
     <section class="resume-section">
+      <div id="branch-warning" style="display: none" class="branch-warning">
+        Branch name could not be detected. Please refresh the page.<br />
+        <span class="branch-warning-issue">
+          If the problem persists,
+          <a href="https://github.com/jeconias/jira-extension/issues" target="_blank"
+            >open an issue</a
+          >.
+        </span>
+      </div>
+      <div id="branch-warning-divider" style="display: none" class="branch-warning-divider"></div>
       <h3>Resume</h3>
       <ul>
         <li>
           <label>
             Name
-            <input id="branch_name" />
+            <input id="branch_name" readonly />
           </label>
           <button id="copy_branch_name">Copy</button>
         </li>
@@ -36,6 +46,7 @@
       </ul>
       <div class="resume-github-link">
         <a href="https://www.github.com/jeconias/jira-extension" target="_blank">Github</a>
+        <span id="extension-version" class="extension-version"></span>
       </div>
     </section>
   </body>
