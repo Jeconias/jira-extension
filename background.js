@@ -2,6 +2,7 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (message.action === 'fetch-prefix-options') {
     const PREFIX_OPTIONS = 'PREFIX_OPTIONS';
     const ONE_HOUR_IN_MILLISECONDS = 60 * 60 * 1000;
+    const ONE_DAY_IN_MILLISECONDS = 24 * ONE_HOUR_IN_MILLISECONDS;
     const FALLBACK_DATA = [
       { key: 'feat', emoji: '✨', label: 'Feat' },
       { key: 'chore', emoji: '🍻', label: 'Chore' },
@@ -9,14 +10,14 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     ];
 
     const fetchPrefixOptions = async () => {
+      const dataFromStorage = await chrome.storage.sync.get([PREFIX_OPTIONS]);
+
       try {
-        console.log(await chrome.storage.sync.get([PREFIX_OPTIONS, 'PREFERENCE_PREFIX']));
-        const dataFromStorage = await chrome.storage.sync.get([PREFIX_OPTIONS]);
         const now = new Date().getTime();
 
         if (
           typeof dataFromStorage?.[PREFIX_OPTIONS]?.createdAt === 'number' &&
-          dataFromStorage[PREFIX_OPTIONS].createdAt + ONE_HOUR_IN_MILLISECONDS > now
+          dataFromStorage[PREFIX_OPTIONS].createdAt + ONE_DAY_IN_MILLISECONDS > now
         ) {
           console.info('Using prefix options from storage');
           sendResponse(dataFromStorage[PREFIX_OPTIONS].data);
@@ -42,7 +43,7 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
         sendResponse(data);
       } catch (err) {
         console.error('Error fetching prefix options:', err);
-        sendResponse(FALLBACK_DATA);
+        sendResponse(dataFromStorage?.[PREFIX_OPTIONS]?.data ?? FALLBACK_DATA);
       }
     };
 
