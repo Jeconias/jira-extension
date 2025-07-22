@@ -66,13 +66,6 @@ html {
   margin: 0;
 }
 
-body {
-  min-width: 300px;
-  border-radius: 5px;
-  padding: 4px 4px;
-  background-color: $background;
-}
-
 p,
 label,
 h1,
@@ -90,12 +83,12 @@ h6 {
 
 $card-bg: #2d3436;
 $card-radius: 12px;
-$card-shadow: 0 2px 12px 0 rgba(0,0,0,0.18);
+$card-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.18);
 $input-bg: #222;
 $input-border: #444;
 $input-radius: 6px;
 $button-radius: 6px;
-$button-shadow: 0 1px 4px 0 rgba(0,0,0,0.12);
+$button-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.12);
 
 @mixin card {
   background: $card-bg;
@@ -116,7 +109,7 @@ $button-shadow: 0 1px 4px 0 rgba(0,0,0,0.12);
   @include transition('border-color, box-shadow');
   &:focus {
     border-color: $primary-color;
-    box-shadow: 0 0 0 2px rgba(255,177,66,0.2);
+    box-shadow: 0 0 0 2px rgba(255, 177, 66, 0.2);
   }
 }
 
@@ -133,6 +126,6 @@ $button-shadow: 0 1px 4px 0 rgba(0,0,0,0.12);
   &:hover {
     background: darken($primary-color, 10%);
     color: #fff;
-    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.18);
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.18);
   }
 }
