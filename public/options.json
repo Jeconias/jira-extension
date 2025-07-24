@@ -2,51 +2,61 @@
   {
     "key": "chore",
     "emoji": "🍻",
-    "label": "Chore"
+    "label": "Chore",
+    "description": "Maintenance tasks, updating dependencies, or other routine work that doesn't modify core functionality"
   },
   {
     "key": "docs",
     "emoji": "📝",
-    "label": "Docs"
+    "label": "Docs",
+    "description": "Adding, updating, or fixing documentation such as README files, code comments, or user guides"
   },
   {
     "key": "feat",
     "emoji": "✨",
-    "label": "Feat"
+    "label": "Feat",
+    "description": "Introducing new features or functionality to the application"
   },
   {
     "key": "fix",
     "emoji": "🐛",
-    "label": "Fix or bug"
+    "label": "Fix or bug",
+    "description": "Fixing bugs, errors, or unexpected behavior in the codebase"
   },
   {
     "key": "infrastructure",
     "emoji": "🧱",
-    "label": "Related to infrastructure"
+    "label": "Related to infrastructure",
+    "description": "Changes to CI/CD pipelines, deployment configurations, server setup, or development environment"
   },
   {
     "key": "package",
     "emoji": "📦️",
-    "label": "Add or update compiled files or dependencies"
+    "label": "Compiled files or dependencies",
+    "description": "Managing project dependencies, updating package.json, or handling compiled/built files"
   },
   {
     "key": "perf",
     "emoji": "⚡️",
-    "label": "Improve performance"
+    "label": "Improve performance",
+    "description": "Optimizing code for better performance, speed improvements, or resource usage reduction"
   },
   {
     "key": "refactor",
     "emoji": "♻️",
-    "label": "Refactor code"
+    "label": "Refactor code",
+    "description": "Restructuring existing code without changing its external behavior to improve readability or maintainability"
   },
   {
     "key": "remove",
     "emoji": "🔥",
-    "label": "Remove code or files"
+    "label": "Remove code or files",
+    "description": "Deleting obsolete code, unused files, or deprecated functionality from the project"
   },
   {
     "key": "style",
     "emoji": "💄",
-    "label": "Style"
+    "label": "Style",
+    "description": "Changes that only affect the appearance of the code such as formatting, whitespace, or code style fixes"
   }
 ]
