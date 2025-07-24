@@ -32,7 +32,7 @@
   {
     "key": "package",
     "emoji": "📦️",
-    "label": "Compiled files or dependencies",
+    "label": "Package dependencies or compiled files",
     "description": "Managing project dependencies, updating package.json, or handling compiled/built files"
   },
   {
