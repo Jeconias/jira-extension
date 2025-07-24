@@ -1,6 +1,6 @@
 {
   "name": "Jira Extension",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "A extension to help you when using the Jira platform.",
   "manifest_version": 3,
   "author": "Jeconias Santos <https://github.com/jeconias>",

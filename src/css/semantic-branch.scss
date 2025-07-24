@@ -15,10 +15,10 @@
   }
 
   select {
+    @include input;
     flex: 1;
     margin-top: $spacing-sm;
-    @include input;
+    width: 100%;
     min-width: 120px;
-    max-width: 220px;
   }
 }
