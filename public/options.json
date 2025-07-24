@@ -1,28 +1,8 @@
 [
   {
-    "key": "feat",
-    "emoji": "✨",
-    "label": "Feat"
-  },
-  {
     "key": "chore",
     "emoji": "🍻",
     "label": "Chore"
-  },
-  {
-    "key": "fix",
-    "emoji": "🐛",
-    "label": "Fix or bug"
-  },
-  {
-    "key": "refactor",
-    "emoji": "♻️",
-    "label": "Refactor"
-  },
-  {
-    "key": "style",
-    "emoji": "💄",
-    "label": "Style"
   },
   {
     "key": "docs",
@@ -30,8 +10,43 @@
     "label": "Docs"
   },
   {
+    "key": "feat",
+    "emoji": "✨",
+    "label": "Feat"
+  },
+  {
+    "key": "fix",
+    "emoji": "🐛",
+    "label": "Fix or bug"
+  },
+  {
+    "key": "infrastructure",
+    "emoji": "🧱",
+    "label": "Related to infrastructure"
+  },
+  {
+    "key": "package",
+    "emoji": "📦️",
+    "label": "Add or update compiled files or dependencies"
+  },
+  {
+    "key": "perf",
+    "emoji": "⚡️",
+    "label": "Improve performance"
+  },
+  {
+    "key": "refactor",
+    "emoji": "♻️",
+    "label": "Refactor code"
+  },
+  {
     "key": "remove",
     "emoji": "🔥",
     "label": "Remove code or files"
+  },
+  {
+    "key": "style",
+    "emoji": "💄",
+    "label": "Style"
   }
 ]
