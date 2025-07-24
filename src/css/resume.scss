@@ -31,13 +31,12 @@
         color: #fff;
       }
 
-      input#branch_name,
-      input#branch_name_checkout {
+      input#branch-name,
+      input#branch-name-checkout {
         margin-top: $spacing-xs;
         @include input;
         min-width: 80px;
         max-width: 100%;
-        max-width: 600px;
         transition: width 0.2s;
         font-family: inherit;
         font-size: inherit;
@@ -115,7 +114,7 @@
       font-weight: 500;
       letter-spacing: 0.5px;
       font-size: 1rem;
-      padding: $spacing-xs $spacing-md;
+      padding: $spacing-xs $spacing-sm;
       border-radius: $button-radius;
       transition: background 0.3s, color 0.3s;
       border: 1px solid $primary-color;

@@ -154,11 +154,11 @@ function resetCopyButtons(allButtons) {
 }
 
 document.addEventListener('DOMContentLoaded', async function () {
-  const semanticBranch = document.getElementById('semantic_branch');
-  const inputBranchRef = document.getElementById('branch_name');
-  const buttonBranchRef = document.getElementById('copy_branch_name');
-  const inputBranchCheckoutRef = document.getElementById('branch_name_checkout');
-  const buttonBrancCheckouthRef = document.getElementById('copy_branch_name_checkout');
+  const semanticBranch = document.getElementById('semantic-branch');
+  const inputBranchRef = document.getElementById('branch-name');
+  const buttonBranchRef = document.getElementById('copy-branch-name');
+  const inputBranchCheckoutRef = document.getElementById('branch-name-checkout');
+  const buttonBrancCheckouthRef = document.getElementById('copy-branch-name-checkout');
 
   await fetchPrefixOptionsAsPromise(semanticBranch);
 
