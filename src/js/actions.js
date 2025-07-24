@@ -124,9 +124,44 @@ async function fetchPrefixOptionsAsPromise(semanticCommitRef) {
         reject(chrome.runtime.lastError);
       } else {
         if (Array.isArray(response) && response.length > 0) {
-          const options = response.map(
-            (item) => `<option value="${item.key}">${item.emoji} ${item.label}</option>`
-          );
+          const options = response.flatMap((item) => {
+            const mainOption = `<option value="${item.key}">${item.emoji} ${item.label}</option>`;
+
+            if (!item.description) return [mainOption];
+
+            if (item.description.length > 60) {
+              const words = item.description.split(' ');
+              const lines = [];
+              let currentLine = '';
+
+              words.forEach((word) => {
+                if ((currentLine + word).length > 60) {
+                  if (currentLine) {
+                    lines.push(currentLine.trim());
+                    currentLine = word + ' ';
+                  } else {
+                    lines.push(word);
+                    currentLine = '';
+                  }
+                } else {
+                  currentLine += word + ' ';
+                }
+              });
+
+              if (currentLine.trim()) {
+                lines.push(currentLine.trim());
+              }
+
+              const descriptionOptions = lines.map(
+                (line) => `<option disabled class="description-option">${line}</option>`
+              );
+
+              return [mainOption, ...descriptionOptions];
+            } else {
+              const descriptionOption = `<option disabled class="description-option">${item.description}</option>`;
+              return [mainOption, descriptionOption];
+            }
+          });
 
           semanticCommitRef.innerHTML = `<option value="">None</option>${options.join('')}`;
           GLOBAL_PREFIX.push(...response.map((item) => item.key));

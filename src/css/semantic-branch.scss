@@ -20,5 +20,13 @@
     margin-top: $spacing-sm;
     width: 100%;
     min-width: 120px;
+
+    option.description-option {
+      @include font-size-xs;
+      color: darken(#fff, 40%);
+      padding-left: $spacing-lg;
+      background-color: inherit !important;
+      font-style: italic;
+    }
   }
 }
