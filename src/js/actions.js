@@ -152,14 +152,9 @@ async function fetchPrefixOptionsAsPromise(semanticCommitRef) {
                 lines.push(currentLine.trim());
               }
 
-              const descriptionOptions = lines.map(
-                (line) => `<option disabled class="description-option">${line}</option>`
-              );
-
-              return [mainOption, ...descriptionOptions];
+              return [mainOption];
             } else {
-              const descriptionOption = `<option disabled class="description-option">${item.description}</option>`;
-              return [mainOption, descriptionOption];
+              return [mainOption];
             }
           });
 
